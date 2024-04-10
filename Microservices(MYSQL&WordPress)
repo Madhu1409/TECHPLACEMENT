@@ -36,9 +36,12 @@ GRANT ALL PRIVILEGES ON Madhu_db.* TO 'Madhu_user'@localhost;
 
 Server-2 WordPress;
 
+[Install PHP and Other Dependencies on WordPress Instance]
 
+sudo apt-get update
+sudo apt-get install apache2
 sudo apt install php libapache2-mod-php php-mysql 
- sudo systemctl restart apache2
+sudo systemctl restart apache2
  
 1.Download WordPress: 
  wget https://wordpress.org/latest.tar.gz 
