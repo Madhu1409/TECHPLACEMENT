@@ -45,7 +45,7 @@ sudo systemctl restart apache2
  
 1.Download WordPress: 
  wget https://wordpress.org/latest.tar.gz 
-tar xzvf latest.tar.gz 
+tar -xzvf latest.tar.gz 
  sudo mv wordpress /var/www/html/ 
 
 2. Configure WordPress: 
