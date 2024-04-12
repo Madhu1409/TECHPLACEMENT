@@ -1,58 +1,68 @@
 
        For Microservices: 2 Ec2 instance,
          1 for WordPress and 1 for MYSQL
-
+________________________________________________________________________________________
   
 Server-1 MySQL:
 
+
 1.Install MySQL server
-sudo apt install mysql-server 
+
+sudo apt install mysql-server -y
 
 2.Login to MySQL server
+
 sudo mysql -u root
 
-3.Change authentication plugin to mysql_native_password (change the password to something strong)
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 
-'Madhu@123';
+3.Change authentication plugin to mysql_native_password (change the password to something strong) 
 
-4.Create a new database user for wordpress (change the password to something strong)
-CREATE USER 'Madhu_user'@localhost IDENTIFIED BY 'Madhu@123';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Madhu@12345';
 
-5.Create a database for wordpress
+4.Create a database for wordpress
+
 CREATE DATABASE Madhu_db;
 
-6.Grant all privilges on the database 'wp' to the newly created user
-GRANT ALL PRIVILEGES ON Madhu_db.* TO 'Madhu_user'@localhost;
+5.Create a new database user for wordpress (change the password to something strong)
+
+CREATE USER 'Madhu_user'@'%' IDENTIFIED BY 'Madhu12345'; 
+
+
+6.Grant all privilges ON the database 'wp' to the newly created user
+
+GRANT ALL PRIVILEGES ON Madhu_db.* TO 'Madhu_user'@'%'; 
 
 7. FLUSH PRIVILEGES;
 
-8.Exit;
+8. exit;
 
-9.sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
-{bind-address   = {change to 0.0.0.0}   
-10.systemctl restart mysql
+9. sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+    {bind-address   = {change to 0.0.0.0}   
+10. systemctl restart mysql
 
-*******************************************
+=======================================================
 
 Server-2 WordPress;
 
-[Install PHP and Other Dependencies on WordPress Instance]
+Install PHP and Other Dependencies on WordPress Instance:
 
-sudo apt-get update
-sudo apt-get install apache2
-sudo apt install php libapache2-mod-php php-mysql 
+sudo apt update
+sudo apt install apache2 -y
+sudo apt install php libapache2-mod-php php-mysql -y
 sudo systemctl restart apache2
- 
-1.Download WordPress: 
- wget https://wordpress.org/latest.tar.gz 
-tar -xzvf latest.tar.gz 
- sudo mv wordpress /var/www/html/ 
 
-2. Configure WordPress: 
-cd /var/www/html/wordpress 
+1.Download WordPress: 
+
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+tar xzvf latest.tar.gz
+sudo mv wordpress /var/www/html/ 
+
+2. Configure WordPress:
+ cd /var/www/html/wordpress 
 
 3.Update the database settings: 
 
 4.Now 
 vim wp-config.php 
  sudo systemctl restart apache2 
+
